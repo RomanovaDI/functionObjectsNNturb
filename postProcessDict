@@ -1,0 +1,127 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      postProcessDict;
+}
+
+functions
+{
+    // Note: the phi field is required by the CourantNo function object
+
+	writeCellVolumes1
+	{
+		type            writeCellVolumes;
+		libs            (fieldFunctionObjects);
+	}
+
+    readFields1
+    {
+        type        readFields;
+        libs        (fieldFunctionObjects);
+        fields      (U);
+    }
+
+	readFields2
+    {
+        type        readFields;
+        libs        (fieldFunctionObjects);
+        fields      (p);
+    }
+
+	fieldAverage1
+	{
+	    type                fieldAverage;
+	    libs                (fieldFunctionObjects);
+	    fields
+	    (
+	        U
+	        {
+	            mean        on;
+	            prime2Mean  on;
+	            base        time;
+	        }
+	        p
+	        {
+	            mean        on;
+	            prime2Mean  on;
+	            base        time;
+	        }
+	    );
+	}
+
+	magU1
+	{
+		type        mag;
+		libs        (fieldFunctionObjects);
+		field		U;
+	}
+
+	gradU1
+	{
+		type        grad;
+		libs        (fieldFunctionObjects);
+		field		U;
+	}
+
+	vorticity1
+    {
+        type        vorticity;
+        libs        (fieldFunctionObjects);
+    }
+
+    strainRate1
+    {
+        type        strainRate;
+        libs        (fieldFunctionObjectsNNturb);
+    }
+
+    rotationRate1
+    {
+        type        rotationRate;
+        libs        (fieldFunctionObjectsNNturb);
+    }
+
+    strainTensor1
+    {
+        type        strainTensor;
+        libs        (fieldFunctionObjectsNNturb);
+    }
+
+    magVorticity1
+    {
+        type        magVorticity;
+        libs        (fieldFunctionObjectsNNturb);
+    }
+
+    I1gradU1
+    {
+        type        I1gradU;
+        libs        (fieldFunctionObjectsNNturb);
+    }
+
+    I2gradU1
+    {
+        type        I2gradU;
+        libs        (fieldFunctionObjectsNNturb);
+    }
+
+    I1r1
+    {
+        type        I1r;
+        libs        (fieldFunctionObjectsNNturb);
+    }
+
+    I1s1
+    {
+        type        I1s;
+        libs        (fieldFunctionObjectsNNturb);
+    }
+
+    I1ss1
+    {
+        type        I1ss;
+        libs        (fieldFunctionObjectsNNturb);
+    }
+}

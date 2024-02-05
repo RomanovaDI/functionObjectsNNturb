@@ -1,0 +1,11 @@
+strainRate/strainRate.C
+strainTensor/strainTensor.C
+rotationRate/rotationRate.C
+magVorticity/magVorticity.C
+I1gradU/I1gradU.C
+I2gradU/I2gradU.C
+I1s/I1s.C
+I1r/I1r.C
+I1ss/I1ss.C
+
+LIB = $(FOAM_USER_LIBBIN)/libfieldFunctionObjectsNNturb
