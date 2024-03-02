@@ -7,5 +7,6 @@ I2gradU/I2gradU.C
 I1s/I1s.C
 I1r/I1r.C
 I1ss/I1ss.C
+fieldAverageTurb/fieldAverageTurb.C
 
 LIB = $(FOAM_USER_LIBBIN)/libfieldFunctionObjectsNNturb
