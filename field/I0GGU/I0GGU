@@ -1,0 +1,13 @@
+// Copy this file to system/ folder and run
+// postProcess -func I20GU
+
+I0GGU
+{
+    type            readFields;
+    libs            (fieldFunctionObjects);
+    fields          (U);
+    type            I0GGU;
+    libs            (fieldNNturbFunctionObjects);
+    executeControl  writeTime;
+    writeControl    writeTime;
+}

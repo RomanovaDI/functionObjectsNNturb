@@ -1,0 +1,13 @@
+// Copy this file to system/ folder and run
+// postProcess -func I2GU
+
+I2GU
+{
+    type            readFields;
+    libs            (fieldFunctionObjects);
+    fields          (U);
+    type            I2GU;
+    libs            (fieldNNturbFunctionObjects);
+    executeControl  writeTime;
+    writeControl    writeTime;
+}

@@ -1,0 +1,13 @@
+// Copy this file to system/ folder and run
+// postProcess -func RR
+
+RR
+{
+    type            readFields;
+    libs            (fieldFunctionObjects);
+    fields          (U);
+    type            RR;
+    libs            (fieldNNturbFunctionObjects);
+    executeControl  writeTime;
+    writeControl    writeTime;
+}

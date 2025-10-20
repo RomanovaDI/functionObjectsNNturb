@@ -1,0 +1,13 @@
+// Copy this file to system/ folder and run
+// postProcess -func I1GGP
+
+I1GGP
+{
+    type            readFields;
+    libs            (fieldFunctionObjects);
+    fields          (p);
+    type            I1GGP;
+    libs            (fieldNNturbFunctionObjects);
+    executeControl  writeTime;
+    writeControl    writeTime;
+}

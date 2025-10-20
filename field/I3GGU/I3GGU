@@ -1,0 +1,13 @@
+// Copy this file to system/ folder and run
+// postProcess -func I3GGU
+
+I3GGU
+{
+    type            readFields;
+    libs            (fieldFunctionObjects);
+    fields          (U);
+    type            I3GGU;
+    libs            (fieldNNturbFunctionObjects);
+    executeControl  writeTime;
+    writeControl    writeTime;
+}

@@ -1,12 +1,21 @@
-strainRate/strainRate.C
-strainTensor/strainTensor.C
-rotationRate/rotationRate.C
-magVorticity/magVorticity.C
-I1gradU/I1gradU.C
-I2gradU/I2gradU.C
-I1s/I1s.C
-I1r/I1r.C
-I1ss/I1ss.C
-fieldAverageTurb/fieldAverageTurb.C
+I2GU/I2GU.C
+I1GU/I1GU.C
+I0/I0.C
+I1/I1.C
+I2/I2.C
+I3/I3.C
+I4/I4.C
+I0GGU/I0GGU.C
+I2GGU/I2GGU.C
+I3GGU/I3GGU.C
+I5GGU/I5GGU.C
+I7GGU/I7GGU.C
+SR/SR.C
+RR/RR.C
+I1GGP/I1GGP.C
+FrGU/FrGU.C
+FrSR/FrSR.C
+FrRR/FrRR.C
+FrGGU/FrGGU.C
 
-LIB = $(FOAM_USER_LIBBIN)/libfieldFunctionObjectsNNturb
+LIB = $(FOAM_USER_LIBBIN)/libfieldNNturbFunctionObjects

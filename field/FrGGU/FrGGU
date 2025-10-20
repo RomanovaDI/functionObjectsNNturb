@@ -1,0 +1,13 @@
+// Copy this file to system/ folder and run
+// postProcess -func FrGGU
+
+FrGGU
+{
+    type            readFields;
+    libs            (fieldFunctionObjects);
+    fields          (U);
+    type            FrGGU;
+    libs            (fieldNNturbFunctionObjects);
+    executeControl  writeTime;
+    writeControl    writeTime;
+}

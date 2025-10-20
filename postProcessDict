@@ -10,11 +10,11 @@ functions
 {
     // Note: the phi field is required by the CourantNo function object
 
-	writeCellVolumes1
-	{
-		type            writeCellVolumes;
-		libs            (fieldFunctionObjects);
-	}
+    writeCellVolumes1
+    {
+        type            writeCellVolumes;
+        libs            (fieldFunctionObjects);
+    }
 
     readFields1
     {
@@ -23,105 +23,233 @@ functions
         fields      (U);
     }
 
-	readFields2
+    readFields2
     {
         type        readFields;
         libs        (fieldFunctionObjects);
         fields      (p);
     }
 
-	fieldAverage1
-	{
-	    type                fieldAverage;
-	    libs                (fieldFunctionObjects);
-	    fields
-	    (
-	        U
-	        {
-	            mean        on;
-	            prime2Mean  on;
-	            base        time;
-	        }
-	        p
-	        {
-	            mean        on;
-	            prime2Mean  on;
-	            base        time;
-	        }
-	    );
-	}
-
-	magU1
-	{
-		type        mag;
-		libs        (fieldFunctionObjects);
-		field		U;
-	}
-
-	gradU1
-	{
-		type        grad;
-		libs        (fieldFunctionObjects);
-		field		U;
-	}
-
-	vorticity1
+    fieldAverage1
     {
-        type        vorticity;
+        type                fieldAverage;
+        libs                (fieldFunctionObjects);
+        fields
+        (
+            U
+            {
+                mean        on;
+                prime2Mean  on;
+                base        time;
+            }
+            p
+            {
+                mean        on;
+                prime2Mean  on;
+                base        time;
+            }
+        );
+    }
+
+    Lambda2
+    {
+        type            Lambda2;
+        libs            (fieldFunctionObjects);
+        executeControl  writeTime;
+        writeControl    writeTime;
+    }
+
+    gradLambda2
+    {
+        type            grad;
+        libs            (fieldFunctionObjects);
+        field           Lambda2;
+        executeControl  writeTime;
+        writeControl    writeTime;
+    }
+
+    magGradLambda2
+    {
+        type            mag;
+        libs            (fieldFunctionObjects);
+        field           grad(Lambda2);
+        executeControl  writeTime;
+        writeControl    writeTime;
+    }
+
+    Q
+    {
+        type            Q;
+        libs            (fieldFunctionObjects);
+        executeControl  writeTime;
+        writeControl    writeTime;
+    }
+
+    gradQ
+    {
+        type            grad;
+        libs            (fieldFunctionObjects);
+        field           Q;
+        executeControl  writeTime;
+        writeControl    writeTime;
+    }
+
+    magGradQ
+    {
+        type            mag;
+        libs            (fieldFunctionObjects);
+        field           grad(Q);
+        executeControl  writeTime;
+        writeControl    writeTime;
+    }
+
+    LambVector
+    {
+        type            LambVector;
+        libs            (fieldFunctionObjects);
+        executeControl  writeTime;
+        writeControl    writeTime;
+    }
+
+    magLambVector
+    {
+        type            mag;
+        libs            (fieldFunctionObjects);
+        field           LambVector;
+        executeControl  writeTime;
+        writeControl    writeTime;
+    }
+
+    gradMagLambVector
+    {
+        type            grad;
+        libs            (fieldFunctionObjects);
+        field           mag(LambVector);
+        executeControl  writeTime;
+        writeControl    writeTime;
+    }
+
+    magGradMagLambVector
+    {
+        type            mag;
+        libs            (fieldFunctionObjects);
+        field           grad(mag(LambVector));
+        executeControl  writeTime;
+        writeControl    writeTime;
+    }
+
+    magU
+    {
+        type        mag;
         libs        (fieldFunctionObjects);
+        field       U;
     }
 
-    strainRate1
+    SR
     {
-        type        strainRate;
-        libs        (fieldFunctionObjectsNNturb);
+        type        SR;
+        libs        (fieldNNturbFunctionObjects);
     }
 
-    rotationRate1
+    FrSR
     {
-        type        rotationRate;
-        libs        (fieldFunctionObjectsNNturb);
+        type        FrSR;
+        libs        (fieldNNturbFunctionObjects);
     }
 
-    strainTensor1
+    RR
     {
-        type        strainTensor;
-        libs        (fieldFunctionObjectsNNturb);
+        type        RR;
+        libs        (fieldNNturbFunctionObjects);
     }
 
-    magVorticity1
+    FrRR
     {
-        type        magVorticity;
-        libs        (fieldFunctionObjectsNNturb);
+        type        FrRR;
+        libs        (fieldNNturbFunctionObjects);
     }
 
-    I1gradU1
+    FrGU
     {
-        type        I1gradU;
-        libs        (fieldFunctionObjectsNNturb);
+        type        FrGU;
+        libs        (fieldNNturbFunctionObjects);
     }
 
-    I2gradU1
+    I1GU
     {
-        type        I2gradU;
-        libs        (fieldFunctionObjectsNNturb);
+        type        I1GU;
+        libs        (fieldNNturbFunctionObjects);
     }
 
-    I1r1
+    I2GU
     {
-        type        I1r;
-        libs        (fieldFunctionObjectsNNturb);
+        type        I2GU;
+        libs        (fieldNNturbFunctionObjects);
     }
 
-    I1s1
+    FrGGU
     {
-        type        I1s;
-        libs        (fieldFunctionObjectsNNturb);
+        type        FrGGU;
+        libs        (fieldNNturbFunctionObjects);
     }
 
-    I1ss1
+    I0GGU
     {
-        type        I1ss;
-        libs        (fieldFunctionObjectsNNturb);
+        type        I0GGU;
+        libs        (fieldNNturbFunctionObjects);
+    }
+
+    I2GGU
+    {
+        type        I2GGU;
+        libs        (fieldNNturbFunctionObjects);
+    }
+
+    I3GGU
+    {
+        type        I3GGU;
+        libs        (fieldNNturbFunctionObjects);
+    }
+
+    I5GGU
+    {
+        type        I5GGU;
+        libs        (fieldNNturbFunctionObjects);
+    }
+
+    I7GGU
+    {
+        type        I7GGU;
+        libs        (fieldNNturbFunctionObjects);
+    }
+
+    I0
+    {
+        type        I0;
+        libs        (fieldNNturbFunctionObjects);
+    }
+
+    I1
+    {
+        type        I1;
+        libs        (fieldNNturbFunctionObjects);
+    }
+
+    I2
+    {
+        type        I2;
+        libs        (fieldNNturbFunctionObjects);
+    }
+
+    I3
+    {
+        type        I3;
+        libs        (fieldNNturbFunctionObjects);
+    }
+
+    I4
+    {
+        type        I4;
+        libs        (fieldNNturbFunctionObjects);
     }
 }
