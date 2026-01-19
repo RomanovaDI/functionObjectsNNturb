@@ -1,0 +1,10 @@
+SVDi
+{
+    type            readFields;
+    libs            (fieldFunctionObjects);
+    fields          (Cx Cy Cz mag(U));
+    type            SVDi;
+    libs            (fieldNNturbFunctionObjects);
+    executeControl  writeTime;
+    writeControl    writeTime;
+}

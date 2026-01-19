@@ -1,0 +1,13 @@
+// Copy this file to system/ folder and run
+// postProcess -func T9
+
+T9
+{
+    type            readFields;
+    libs            (fieldFunctionObjects);
+    fields          (U);
+    type            T9;
+    libs            (fieldNNturbFunctionObjects);
+    executeControl  writeTime;
+    writeControl    writeTime;
+}

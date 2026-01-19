@@ -252,4 +252,153 @@ functions
         type        I4;
         libs        (fieldNNturbFunctionObjects);
     }
+
+    T1
+    {
+        type        T1;
+        libs        (fieldNNturbFunctionObjects);
+    }
+
+    T2
+    {
+        type        T2;
+        libs        (fieldNNturbFunctionObjects);
+    }
+
+    T3
+    {
+        type        T3;
+        libs        (fieldNNturbFunctionObjects);
+    }
+
+    T4
+    {
+        type        T4;
+        libs        (fieldNNturbFunctionObjects);
+    }
+
+    T5
+    {
+        type        T5;
+        libs        (fieldNNturbFunctionObjects);
+    }
+
+    T6
+    {
+        type        T6;
+        libs        (fieldNNturbFunctionObjects);
+    }
+
+    T7
+    {
+        type        T7;
+        libs        (fieldNNturbFunctionObjects);
+    }
+
+    T8
+    {
+        type        T8;
+        libs        (fieldNNturbFunctionObjects);
+    }
+
+    T9
+    {
+        type        T9;
+        libs        (fieldNNturbFunctionObjects);
+    }
+
+    T10
+    {
+        type        T10;
+        libs        (fieldNNturbFunctionObjects);
+    }
+
+    readFields
+    {
+        type        readFields;
+        libs        (fieldFunctionObjects);
+        fields      (T1);
+    }
+
+    readFields
+    {
+        type        readFields;
+        libs        (fieldFunctionObjects);
+        fields      (T2);
+    }
+
+    readFields
+    {
+        type        readFields;
+        libs        (fieldFunctionObjects);
+        fields      (T3);
+    }
+
+    readFields
+    {
+        type        readFields;
+        libs        (fieldFunctionObjects);
+        fields      (T4);
+    }
+
+    readFields
+    {
+        type        readFields;
+        libs        (fieldFunctionObjects);
+        fields      (T5);
+    }
+
+    readFields
+    {
+        type        readFields;
+        libs        (fieldFunctionObjects);
+        fields      (T6);
+    }
+
+    readFields
+    {
+        type        readFields;
+        libs        (fieldFunctionObjects);
+        fields      (T7);
+    }
+
+    readFields
+    {
+        type        readFields;
+        libs        (fieldFunctionObjects);
+        fields      (T8);
+    }
+
+    readFields
+    {
+        type        readFields;
+        libs        (fieldFunctionObjects);
+        fields      (T9);
+    }
+
+    readFields
+    {
+        type        readFields;
+        libs        (fieldFunctionObjects);
+        fields      (T10);
+    }
+
+    readFields
+    {
+        type        readFields;
+        libs        (fieldFunctionObjects);
+        fields      (R);
+    }
+
+    CTi
+    {
+        type        CTi;
+        libs        (fieldNNturbFunctionObjects);
+    }
+
+    RT
+    {
+        type        RT;
+        libs        (fieldNNturbFunctionObjects);
+    }
 }
