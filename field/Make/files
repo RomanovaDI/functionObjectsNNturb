@@ -43,5 +43,6 @@ T10s/T10s.C
 CTis/CTis.C
 RCTis/RCTis.C
 reynoldsStressSVD/reynoldsStressSVD.C
+reynoldsStressPope/reynoldsStressPope.C
 
 LIB = $(FOAM_USER_LIBBIN)/libfieldNNturbFunctionObjects

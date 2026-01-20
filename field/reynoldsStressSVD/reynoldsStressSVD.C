@@ -145,7 +145,7 @@ void Foam::functionObjects::reynoldsStressSVD::performSVD()
     
     // Counters for statistics
     label nCells = mesh_.nCells();
-    label nFailedSVD = 0;
+    label nRankDeficient = 0;  // Cells with rank < 3
     scalar totalError = 0.0;
     
     // Loop over all cells
@@ -186,11 +186,10 @@ void Foam::functionObjects::reynoldsStressSVD::performSVD()
             // Perform SVD decomposition using OpenFOAM's SVD class
             SVD svd(A, svdTolerance_);
             
-            // Check if SVD was successful by checking singular values
-            // SVD returns a scalarDiagonalMatrix for singular values
+            // Get singular values - they are returned as a scalarDiagonalMatrix
             const scalarDiagonalMatrix& S = svd.S();
             
-            // Count non-zero singular values
+            // Count non-zero singular values for statistics
             label nNonZero = 0;
             for (label i = 0; i < S.size(); ++i)
             {
@@ -200,13 +199,10 @@ void Foam::functionObjects::reynoldsStressSVD::performSVD()
                 }
             }
             
+            // Track rank-deficient cases for statistics
             if (nNonZero < 3)
             {
-                nFailedSVD++;
-                c_s_[cellI] = 0.0;
-                c_ss_[cellI] = 0.0;
-                c_sss_[cellI] = 0.0;
-                continue;
+                nRankDeficient++;
             }
             
             // Solve using the SVD decomposition
@@ -235,7 +231,8 @@ void Foam::functionObjects::reynoldsStressSVD::performSVD()
                 }
                 else
                 {
-                    // Singular value is too small, set to zero
+                    // Singular value is too small, set contribution to zero
+                    // This handles rank-deficient cases properly
                     SinvUTb[i] = 0.0;
                 }
             }
@@ -267,7 +264,8 @@ void Foam::functionObjects::reynoldsStressSVD::performSVD()
         }
         catch (const Foam::error& err)
         {
-            nFailedSVD++;
+            // Only count actual SVD failures (exceptions)
+            nRankDeficient++;
             c_s_[cellI] = 0.0;
             c_ss_[cellI] = 0.0;
             c_sss_[cellI] = 0.0;
@@ -278,16 +276,16 @@ void Foam::functionObjects::reynoldsStressSVD::performSVD()
     if (log)
     {
         scalar avgError = 0.0;
-        if (nCells - nFailedSVD > 0)
+        if (nCells > 0)
         {
-            avgError = totalError / (nCells - nFailedSVD);
+            avgError = totalError / nCells;
         }
         
         Info<< type() << " " << name() << ": "
             << "SVD Statistics:" << nl
             << "  Total cells: " << nCells << nl
-            << "  Failed SVD: " << nFailedSVD 
-            << " (" << (100.0 * nFailedSVD / max(nCells, 1)) << "%)" << nl
+            << "  Rank-deficient cases (<3 non-zero SV): " << nRankDeficient 
+            << " (" << (100.0 * nRankDeficient / max(nCells, 1)) << "%)" << nl
             << "  Average reconstruction error: " << avgError << nl
             << "  Coefficient statistics:" << nl
             << "    c_s:   min = " << min(c_s_).value() 
@@ -301,7 +299,6 @@ void Foam::functionObjects::reynoldsStressSVD::performSVD()
             << ", avg = " << average(c_sss_).value() << endl;
     }
 }
-
 
 void Foam::functionObjects::reynoldsStressSVD::reconstructRSVD()
 {
