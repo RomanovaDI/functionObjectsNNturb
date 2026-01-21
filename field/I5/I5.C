@@ -26,7 +26,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "T5s.H"
+#include "I5.H"
 #include "fvcGrad.H"
 #include "addToRunTimeSelectionTable.H"
 
@@ -36,27 +36,24 @@ namespace Foam
 {
 namespace functionObjects
 {
-    defineTypeNameAndDebug(T5s, 0);
-    addToRunTimeSelectionTable(functionObject, T5s, dictionary);
+    defineTypeNameAndDebug(I5, 0);
+    addToRunTimeSelectionTable(functionObject, I5, dictionary);
 }
 }
 
 
 // * * * * * * * * * * * * * Private Member Functions  * * * * * * * * * * * //
 
-bool Foam::functionObjects::T5s::calc()
+bool Foam::functionObjects::I5::calc()
 {
     if (foundObject<volVectorField>(fieldName_))
     {
-        tmp<volVectorField> tU = lookupObject<volVectorField>(fieldName_);
-        const volVectorField& U = tU();
-        const volSymmTensorField s = symm(fvc::grad(U));
-        const volTensorField r = skew(fvc::grad(U));
-        //const volTensorField res = (r & s & s) - (s & s & r);
+        tmp<volTensorField> tGU = fvc::grad(lookupObject<volVectorField>(fieldName_));
+        const volTensorField& GU = tGU();
         return store
         (
             resultName_,
-            symm((r & s & s) - (s & s & r))
+            (tr(skew(GU) & skew(GU) & symm(GU) & symm(GU)))
         );
     }
 
@@ -66,7 +63,7 @@ bool Foam::functionObjects::T5s::calc()
 
 // * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //
 
-Foam::functionObjects::T5s::T5s
+Foam::functionObjects::I5::I5
 (
     const word& name,
     const Time& runTime,

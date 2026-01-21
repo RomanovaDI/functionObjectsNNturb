@@ -53,7 +53,7 @@ bool Foam::functionObjects::I4::calc()
         return store
         (
             resultName_,
-            (tr(skew(GU) & skew(GU) & symm(GU) & symm(GU)))
+            (tr(skew(GU) & skew(GU) & symm(GU)))
         );
     }
 

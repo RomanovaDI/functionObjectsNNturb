@@ -34,13 +34,13 @@ Description
     Computes the first Pope's invariant.
 
     \f[
-        I_1 = tr(r & r)
+        I_1 = tr(s & s)
     \f]
 
     where
     \vartable
         I_1             | First Pope's invariant    [1/s^2]
-        r               | Rotation rate tensor    [1/s]
+        s               | Strain rate tensor    [1/s]
         U               | Velocity     [m/s]
     \endvartable
 
@@ -92,8 +92,8 @@ SourceFiles
 
 \*---------------------------------------------------------------------------*/
 
-#ifndef functionObjects_I2gradU_H
-#define functionObjects_I2gradU_H
+#ifndef functionObjects_I1_H
+#define functionObjects_I1_H
 
 #include "fieldExpression.H"
 

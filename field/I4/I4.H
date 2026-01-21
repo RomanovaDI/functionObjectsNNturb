@@ -31,15 +31,15 @@ Group
     grpFieldFunctionObjects
 
 Description
-    Computes the first Pope's invariant.
+    Computes the fourth Pope's invariant.
 
     \f[
-        I_4 = tr(r & r & s & s)
+        I_4 = tr(r & r & s)
     \f]
 
     where
     \vartable
-        I_3             | First Pope's invariant    [1/s^4]
+        I_4             | Fourth Pope's invariant    [1/s^3]
         r               | Rotation rate tensor    [1/s]
         s               | Strain rate tensor    [1/s]
         U               | Velocity     [m/s]
@@ -93,8 +93,8 @@ SourceFiles
 
 \*---------------------------------------------------------------------------*/
 
-#ifndef functionObjects_I2gradU_H
-#define functionObjects_I2gradU_H
+#ifndef functionObjects_I4_H
+#define functionObjects_I4_H
 
 #include "fieldExpression.H"
 

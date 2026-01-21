@@ -1,10 +1,10 @@
 I2GU/I2GU.C
 I1GU/I1GU.C
-I0/I0.C
 I1/I1.C
 I2/I2.C
 I3/I3.C
 I4/I4.C
+I5/I5.C
 I0GGU/I0GGU.C
 I2GGU/I2GGU.C
 I3GGU/I3GGU.C
@@ -27,21 +27,6 @@ T7/T7.C
 T8/T8.C
 T9/T9.C
 T10/T10.C
-RT/RT.C
-CTi/CTi.C
-RCTi/RCTi.C
-T1s/T1s.C
-T2s/T2s.C
-T3s/T3s.C
-T4s/T4s.C
-T5s/T5s.C
-T6s/T6s.C
-T7s/T7s.C
-T8s/T8s.C
-T9s/T9s.C
-T10s/T10s.C
-CTis/CTis.C
-RCTis/RCTis.C
 reynoldsStressSVD/reynoldsStressSVD.C
 reynoldsStressPope/reynoldsStressPope.C
 

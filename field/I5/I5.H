@@ -25,23 +25,24 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 Class
-    Foam::functionObjects::T1s
+    Foam::functionObjects::I5
 
 Group
     grpFieldFunctionObjects
 
 Description
-    Computes the T1s Pope's tensor, the strain tensor.
+    Computes the fifth Pope's invariant.
 
     \f[
-        T1s = s = 0.5 (\nabla U + (\nabla U)^T)
+        I_5 = tr(r & r & s & s)
     \f]
 
     where
     \vartable
-        T1s      | First Pope's tensor [1/s]
-        s        | Strain tensor       [1/s]
-        U        | Velocity vector     [m/s]
+        I_5             | Fifth Pope's invariant    [1/s^4]
+        r               | Rotation rate tensor    [1/s]
+        s               | Strain rate tensor    [1/s]
+        U               | Velocity     [m/s]
     \endvartable
 
     Operands:
@@ -55,11 +56,11 @@ Description
 Usage
     Minimal example by using \c system/controlDict.functions:
     \verbatim
-    strainRate1
+    I5
     {
         // Mandatory entries (unmodifiable)
-        type        T1s;
-        libs        (fieldFunctionObjectsNNturb);
+        type        I5;
+        libs        (fieldNNturbFunctionObjects);
 
         // Optional (inherited) entries
         ...
@@ -68,9 +69,9 @@ Usage
 
     where the entries mean:
     \table
-      Property     | Description                        | Type | Req'd | Dflt
-      type         | Type name: T1s                     | word |  yes  | -
-      libs         | Library name: fieldFunctionObjects | word |  yes  | -
+      Property     | Description                              | Type | Req'd | Dflt
+      type         | Type name: I5                            | word |  yes  | -
+      libs         | Library name: fieldFunctionObjectsNNturb | word |  yes  | -
     \endtable
 
     The inherited entries are elaborated in:
@@ -79,22 +80,21 @@ Usage
 
     Minimal example by using the \c postProcess utility:
     \verbatim
-        postProcess -func T1s
+        postProcess -func I5
     \endverbatim
 
 See also
     - Foam::functionObject
     - Foam::functionObjects::fvMeshFunctionObject
     - Foam::functionObjects::fieldExpression
-    - ExtendedCodeGuide::functionObjects::field::T1s
 
 SourceFiles
-    T1s.C
+    I5.C
 
 \*---------------------------------------------------------------------------*/
 
-#ifndef functionObjects_T1s_H
-#define functionObjects_T1s_H
+#ifndef functionObjects_I5_H
+#define functionObjects_I5_H
 
 #include "fieldExpression.H"
 
@@ -106,29 +106,29 @@ namespace functionObjects
 {
 
 /*---------------------------------------------------------------------------*\
-                          Class T1s Declaration
+                          Class I5 Declaration
 \*---------------------------------------------------------------------------*/
 
-class T1s
+class I5
 :
     public fieldExpression
 {
     // Private Member Functions
 
-        //- Calculate the T1s field and return true if successful
+        //- Calculate the I5 field and return true if successful
         virtual bool calc();
 
 
 public:
 
     //- Runtime type information
-    TypeName("T1s");
+    TypeName("I5");
 
 
     // Constructors
 
         //- Construct from Time and dictionary
-        T1s
+        I5
         (
             const word& name,
             const Time& runTime,
@@ -136,14 +136,14 @@ public:
         );
 
         //- No copy construct
-        T1s(const T1s&) = delete;
+        I5(const I5&) = delete;
 
         //- No copy assignment
-        void operator=(const T1s&) = delete;
+        void operator=(const I5&) = delete;
 
 
     //- Destructor
-    virtual ~T1s() = default;
+    virtual ~I5() = default;
 };
 
 
