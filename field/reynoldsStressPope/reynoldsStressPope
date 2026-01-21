@@ -1,0 +1,24 @@
+reynoldsStressPope
+{
+    type            reynoldsStressPope;
+    libs            (fieldNNturbFunctionObjects);
+
+    enabled         true;
+    writeControl    timeStep;
+    writeInterval   1;
+    
+    // Name of velocity field
+    U               U;
+    
+    // Name of Reynolds stress tensor field (symmTensorField)
+    R               R;
+    
+    // Optional: whether to write intermediate tensors
+    writeTensors    true;
+    
+    // Optional: use only 6 independent equations (recommended for symmetric R)
+    useSymmetricEqns true;
+    
+    // Optional: SVD tolerance
+    svdTolerance    1e-12;
+}
