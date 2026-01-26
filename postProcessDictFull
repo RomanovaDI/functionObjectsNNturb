@@ -323,7 +323,7 @@ functions
         U               U;
         
         // Name of Reynolds stress tensor field (symmTensorField)
-        R               "turbulenceProperties:R";
+        R               R;
         
         // Optional: whether to write intermediate tensors
         writeTensors    true;
