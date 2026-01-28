@@ -143,13 +143,6 @@ void Foam::functionObjects::reynoldsStressPope::calcPopeTensors()
 
 void Foam::functionObjects::reynoldsStressPope::performSVD()
 {
-    if (!Rptr_)
-    {
-        FatalErrorInFunction
-            << "Reynolds stress tensor field " << RName_ << " not found in mesh"
-            << exit(FatalError);
-    }
-    
     const volSymmTensorField& R = *Rptr_;
     
     if (writeTensors_ && log)
@@ -423,13 +416,6 @@ void Foam::functionObjects::reynoldsStressPope::performSVD()
 
 void Foam::functionObjects::reynoldsStressPope::reconstructRPope()
 {
-    if (!Rptr_)
-    {
-        FatalErrorInFunction
-            << "Reynolds stress tensor field " << RName_ << " not found in mesh"
-            << exit(FatalError);
-    }
-    
     const volSymmTensorField& R = *Rptr_;
     
     if (writeTensors_ && log)
@@ -499,7 +485,7 @@ Foam::functionObjects::reynoldsStressPope::reynoldsStressPope
     (
         IOobject
         (
-            "s",
+            "strainRateTensor",//"s",
             mesh_.time().timeName(),
             mesh_,
             IOobject::NO_READ,
@@ -512,7 +498,7 @@ Foam::functionObjects::reynoldsStressPope::reynoldsStressPope
     (
         IOobject
         (
-            "r",
+            "rotationRateTensor",//"r",
             mesh_.time().timeName(),
             mesh_,
             IOobject::NO_READ,
@@ -874,6 +860,17 @@ bool Foam::functionObjects::reynoldsStressPope::write()
     if (log)
     {
         Info<< type() << " " << name() << " writing fields:" << endl;
+        Info<< "Writing cT1_ field with name: " << cT1_.name() << endl;
+        Info<< "Writing cT2_ field with name: " << cT2_.name() << endl;
+        Info<< "Writing cT3_ field with name: " << cT3_.name() << endl;
+        Info<< "Writing cT4_ field with name: " << cT4_.name() << endl;
+        Info<< "Writing cT5_ field with name: " << cT5_.name() << endl;
+        Info<< "Writing cT6_ field with name: " << cT6_.name() << endl;
+        Info<< "Writing cT7_ field with name: " << cT7_.name() << endl;
+        Info<< "Writing cT8_ field with name: " << cT8_.name() << endl;
+        Info<< "Writing cT9_ field with name: " << cT9_.name() << endl;
+        Info<< "Writing cT10_ field with name: " << cT10_.name() << endl;
+        Info<< "Writing R_Pope_ field with name: " << R_Pope_.name() << endl;
     }
     
     // Always write coefficients and reconstructed field
@@ -884,6 +881,21 @@ bool Foam::functionObjects::reynoldsStressPope::write()
     // Write intermediate tensors if requested
     if (writeTensors_)
     {
+        if (log)
+        {
+            Info<< "Writing s_ field with name: " << s_.name() << endl;
+            Info<< "Writing r_ field with name: " << r_.name() << endl;
+            Info<< "Writing T1_ field with name: " << T1_.name() << endl;
+            Info<< "Writing T2_ field with name: " << T2_.name() << endl;
+            Info<< "Writing T3_ field with name: " << T3_.name() << endl;
+            Info<< "Writing T4_ field with name: " << T4_.name() << endl;
+            Info<< "Writing T5_ field with name: " << T5_.name() << endl;
+            Info<< "Writing T6_ field with name: " << T6_.name() << endl;
+            Info<< "Writing T7_ field with name: " << T7_.name() << endl;
+            Info<< "Writing T8_ field with name: " << T8_.name() << endl;
+            Info<< "Writing T9_ field with name: " << T9_.name() << endl;
+            Info<< "Writing T10_ field with name: " << T10_.name() << endl;
+        }
         s_.write();
         r_.write();
         T1_.write(); T2_.write(); T3_.write(); T4_.write(); T5_.write();
